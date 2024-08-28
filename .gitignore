@@ -23,6 +23,12 @@
 hs_err_pid*
 replay_pid*
 
+#Environment
+*.env
+*.env.*
+*/*.env
+*/*.env.*
+
 # Spring
 
 spring-boot/**/HELP.md
