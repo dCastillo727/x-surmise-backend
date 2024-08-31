@@ -1,6 +1,6 @@
 package com.xsurmise.authorizationdata.common.utils.event;
 
-import com.xsurmise.authorizationserver.common.utils.message.AppMessage;
+import com.xsurmise.authorizationdata.common.utils.message.AppMessage;
 
 import java.time.Instant;
 

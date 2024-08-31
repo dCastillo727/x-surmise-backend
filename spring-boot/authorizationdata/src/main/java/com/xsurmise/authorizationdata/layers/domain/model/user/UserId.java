@@ -1,4 +1,25 @@
 package com.xsurmise.authorizationdata.layers.domain.model.user;
 
-public class UserId {
+import java.util.UUID;
+
+public record UserId(String id) {
+    public UserId {
+        if (id == null || id.isBlank()) throw new IllegalArgumentException("Invalid user id");
+    }
+
+    public static UserId from(final String id) {
+        return new UserId(id);
+    }
+
+    public static UserId generate() {
+        return new UserId(UUID.randomUUID().toString());
+    }
+
+    public String asString() {
+        return id;
+    }
+
+    public UUID asUUID() {
+        return UUID.fromString(id);
+    }
 }
