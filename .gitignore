@@ -46,11 +46,15 @@ spring-boot/**/*.settings
 spring-boot/**/*.springBeans
 spring-boot/**/*.sts4-cache
 
-### IntelliJ IDEA ###
-spring-boot/**/.idea
-spring-boot/**/*.iws
-spring-boot/**/*.iml
-spring-boot/**/*.ipr
+### Intellij Idea related
+*/.idea
+*/*.iws
+*/*.iml
+*/*.ipr
+.idea
+*.iws
+*.iml
+*.ipr
 
 ### NetBeans ###
 spring-boot/**/nbproject/private/
