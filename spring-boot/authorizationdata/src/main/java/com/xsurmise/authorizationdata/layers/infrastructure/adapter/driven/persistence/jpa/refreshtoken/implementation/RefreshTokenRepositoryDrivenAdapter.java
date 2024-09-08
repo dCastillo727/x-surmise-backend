@@ -1,7 +1,7 @@
 package com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.refreshtoken.implementation;
 
 import com.xsurmise.authorizationdata.common.utils.annotations.adapter.DrivenAdapter;
-import com.xsurmise.authorizationdata.layers.application.dto.utils.response.AppPage;
+import com.xsurmise.authorizationdata.layers.application.dto.utils.response.pagination.AppPage;
 import com.xsurmise.authorizationdata.layers.application.port.driven.persistence.repository.refreshtoken.RefreshTokenRepositoryDrivenPort;
 import com.xsurmise.authorizationdata.layers.domain.model.appuser.AppUserId;
 import com.xsurmise.authorizationdata.layers.domain.model.globaluser.GlobalUserId;

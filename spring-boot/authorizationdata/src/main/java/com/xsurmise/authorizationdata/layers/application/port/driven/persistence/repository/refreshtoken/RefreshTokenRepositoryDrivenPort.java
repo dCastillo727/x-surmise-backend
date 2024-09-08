@@ -1,7 +1,7 @@
 package com.xsurmise.authorizationdata.layers.application.port.driven.persistence.repository.refreshtoken;
 
 import com.xsurmise.authorizationdata.common.utils.annotations.port.DrivenPort;
-import com.xsurmise.authorizationdata.layers.application.dto.utils.response.AppPage;
+import com.xsurmise.authorizationdata.layers.application.dto.utils.response.pagination.AppPage;
 import com.xsurmise.authorizationdata.layers.domain.model.appuser.AppUserId;
 import com.xsurmise.authorizationdata.layers.domain.model.globaluser.GlobalUserId;
 import com.xsurmise.authorizationdata.layers.domain.model.refreshtoken.RefreshToken;

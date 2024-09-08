@@ -1,7 +1,7 @@
 package com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.accesstoken.implementation;
 
 import com.xsurmise.authorizationdata.common.utils.annotations.adapter.DrivenAdapter;
-import com.xsurmise.authorizationdata.layers.application.dto.utils.response.AppPage;
+import com.xsurmise.authorizationdata.layers.application.dto.utils.response.pagination.AppPage;
 import com.xsurmise.authorizationdata.layers.application.port.driven.persistence.repository.accesstoken.AccessTokenRepositoryDrivenPort;
 import com.xsurmise.authorizationdata.layers.domain.model.accesstoken.AccessToken;
 import com.xsurmise.authorizationdata.layers.domain.model.accesstoken.AccessTokenId;

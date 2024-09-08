@@ -49,6 +49,6 @@ public class GlobalUserJpaEntity implements Serializable {
     @Column(name = "last_log_in_at", nullable = false)
     private LocalDateTime lastLogInAt;
 
-    @OneToMany(mappedBy = "global_users")
+    @OneToMany(mappedBy = "globalUser")
     private Set<AppUserJpaEntity> appUsers;
 }
