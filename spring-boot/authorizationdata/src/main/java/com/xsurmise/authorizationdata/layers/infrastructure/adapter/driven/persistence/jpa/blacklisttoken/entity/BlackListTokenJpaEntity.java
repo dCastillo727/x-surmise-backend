@@ -11,7 +11,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
@@ -27,5 +27,5 @@ public class BlackListTokenJpaEntity implements Serializable {
 
     @Column(name = "revoked_at", nullable = false)
     @CreationTimestamp
-    private LocalDateTime revokedAt;
+    private OffsetDateTime revokedAt;
 }

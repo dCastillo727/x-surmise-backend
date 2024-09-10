@@ -11,7 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,7 +29,7 @@ public class GlobalUserJpaEntity implements Serializable {
 
     @Column(name = "created_at", nullable = false)
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    private OffsetDateTime createdAt;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
@@ -39,7 +39,7 @@ public class GlobalUserJpaEntity implements Serializable {
 
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    private OffsetDateTime updatedAt;
 
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -47,7 +47,7 @@ public class GlobalUserJpaEntity implements Serializable {
     private RoleJpaEntity role;
 
     @Column(name = "last_log_in_at", nullable = false)
-    private LocalDateTime lastLogInAt;
+    private OffsetDateTime lastLogInAt;
 
     @OneToMany(mappedBy = "globalUser")
     private Set<AppUserJpaEntity> appUsers;

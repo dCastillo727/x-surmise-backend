@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "com.xsurmise.authorizationdata";
+option java_multiple_files = true;
+
+service ClientService {
+  rpc GetClients (EmptyRequest) returns (ClientListResponse);
+}
+
+message EmptyRequest {}
+
+message ClientResponse {
+  string clientId = 1;
+  string clientSecret = 2;
+  repeated string grantTypes = 3;
+  repeated string redirectUris = 4;
+  repeated string scopes = 5;
+  int32 accessTokenValidity = 6;
+  int32 refreshTokenValidity = 7;
+}
+
+message ClientListResponse {
+  repeated ClientResponse clients = 1;
+}
