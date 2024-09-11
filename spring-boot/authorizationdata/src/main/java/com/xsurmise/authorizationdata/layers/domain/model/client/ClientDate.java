@@ -5,6 +5,10 @@ import java.time.OffsetDateTime;
 import java.time.ZoneId;
 
 public record ClientDate(Instant value, ZoneId zoneId) {
+    public ClientDate {
+        if (value == null || zoneId == null) throw new IllegalArgumentException("Client date doesnt accept null values");
+    }
+
     public static ClientDate from(OffsetDateTime date) {
         return new ClientDate(
                 date.toInstant(),

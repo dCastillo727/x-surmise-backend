@@ -4,6 +4,9 @@ import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persi
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Transactional
 public interface JpaRepositoryClient extends JpaRepository<ClientJpaEntity, Integer> {
+    Optional<ClientJpaEntity> findByClientId(String clientId);
 }

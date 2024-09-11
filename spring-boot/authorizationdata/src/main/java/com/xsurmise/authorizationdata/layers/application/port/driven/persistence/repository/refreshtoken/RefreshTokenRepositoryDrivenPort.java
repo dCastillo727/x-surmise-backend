@@ -7,11 +7,13 @@ import com.xsurmise.authorizationdata.layers.domain.model.globaluser.GlobalUserI
 import com.xsurmise.authorizationdata.layers.domain.model.refreshtoken.RefreshToken;
 import com.xsurmise.authorizationdata.layers.domain.model.refreshtoken.RefreshTokenId;
 
+import java.util.Optional;
+
 @DrivenPort
 public interface RefreshTokenRepositoryDrivenPort {
     void save(RefreshToken refreshToken);
 
-    RefreshToken findById(RefreshTokenId tokenId);
+    Optional<RefreshToken> findById(RefreshTokenId tokenId);
 
     boolean existsById(RefreshTokenId tokenId);
 

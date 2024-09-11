@@ -3,10 +3,7 @@ package com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.pers
 import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.client.entity.ClientJpaEntity;
 import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.user.entity.AppUserJpaEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @Table(name = "oauth_access_tokens")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccessTokenJpaEntity implements Serializable {
@@ -26,12 +24,18 @@ public class AccessTokenJpaEntity implements Serializable {
     private UUID tokenId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
     private AppUserJpaEntity user;
 
+    @Column(name = "user_id")
+    private UUID userId;
+
     @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
+    @JoinColumn(name = "client_id", nullable = false, insertable = false, updatable = false)
     private ClientJpaEntity client;
+
+    @Column(name = "client_id")
+    private String clientId;
 
     @Column(name = "scopes", nullable = false)
     private String scopes;

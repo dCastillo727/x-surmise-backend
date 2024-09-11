@@ -20,5 +20,5 @@ message ClientResponse {
 }
 
 message ClientListResponse {
-  repeated ClientResponse clients = 1;
+  repeated ClientResponse data = 1;
 }

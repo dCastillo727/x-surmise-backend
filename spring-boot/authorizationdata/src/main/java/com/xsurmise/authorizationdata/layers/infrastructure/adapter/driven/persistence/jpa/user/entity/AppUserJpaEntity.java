@@ -14,6 +14,7 @@ import java.util.UUID;
 @Table(name = "app_users")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AppUserJpaEntity implements Serializable {
@@ -31,12 +32,18 @@ public class AppUserJpaEntity implements Serializable {
     private OffsetDateTime updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "global_user_id", nullable = false)
+    @JoinColumn(name = "global_user_id", nullable = false, insertable = false, updatable = false)
     private GlobalUserJpaEntity globalUser;
 
+    @Column(name = "global_user_id")
+    private UUID globalUserId;
+
     @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
+    @JoinColumn(name = "client_id", nullable = false, insertable = false, updatable = false)
     private ClientJpaEntity client;
+
+    @Column(name = "client_id")
+    private Integer clientId;
 
     @Column(name = "username", unique = true, nullable = false)
     private String username;

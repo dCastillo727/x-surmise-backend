@@ -15,24 +15,28 @@ import java.util.Objects;
 @Setter
 public class RefreshToken implements AggregateDomainEvent {
     private final List<RefreshTokenDomainEvent> events;
+    private final RefreshTokenId tokenId;
     private final AppUserId userId;
     private final ClientId clientId;
     private RefreshTokenDate issuedAt;
     private RefreshTokenDate expiresAt;
 
     public RefreshToken(
-            AppUserId globalUserId,
+            RefreshTokenId tokenId,
+            AppUserId userId,
             ClientId clientId,
             RefreshTokenDate issuedAt,
             RefreshTokenDate expiresAt
     ) {
-        Objects.requireNonNull(globalUserId);
+        Objects.requireNonNull(tokenId);
+        Objects.requireNonNull(userId);
         Objects.requireNonNull(clientId);
         Objects.requireNonNull(issuedAt);
         Objects.requireNonNull(expiresAt);
 
         this.events = new ArrayList<>();
-        this.userId = globalUserId;
+        this.tokenId = tokenId;
+        this.userId = userId;
         this.clientId = clientId;
         this.issuedAt = issuedAt;
         this.expiresAt = expiresAt;

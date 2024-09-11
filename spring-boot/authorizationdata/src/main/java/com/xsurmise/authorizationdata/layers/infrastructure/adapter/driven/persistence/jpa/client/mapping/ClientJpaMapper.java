@@ -3,11 +3,9 @@ package com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.pers
 import com.xsurmise.authorizationdata.common.utils.mapping.MapperEntity;
 import com.xsurmise.authorizationdata.layers.domain.model.client.*;
 import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.client.entity.ClientJpaEntity;
-import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-@Component
 public class ClientJpaMapper implements MapperEntity<Client, ClientJpaEntity> {
     @Override
     public ClientJpaEntity toEntity(Client domainModel) {

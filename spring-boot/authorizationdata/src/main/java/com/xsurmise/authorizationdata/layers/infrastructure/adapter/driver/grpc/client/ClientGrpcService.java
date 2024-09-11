@@ -26,7 +26,7 @@ public class ClientGrpcService extends ClientServiceGrpc.ClientServiceImplBase {
 
         ClientListResponse.Builder responseBuilder = ClientListResponse.newBuilder();
         for (Client client : clients) {
-            responseBuilder.addClients(
+            responseBuilder.addData(
                     ClientResponse.newBuilder()
                             .setClientId(client.getClientId().value())
                             .setClientSecret(client.getClientSecret().value())
