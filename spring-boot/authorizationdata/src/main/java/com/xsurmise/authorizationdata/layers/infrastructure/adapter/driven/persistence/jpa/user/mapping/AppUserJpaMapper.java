@@ -14,7 +14,7 @@ public class AppUserJpaMapper implements MapperEntity<AppUser, AppUserJpaEntity>
                 .createdAt(domainModel.getCreatedAt().toOffsetDateTime())
                 .updatedAt(domainModel.getUpdatedAt().toOffsetDateTime())
                 .globalUserId(domainModel.getGlobalUserId().asUUID())
-                .clientId(domainModel.getClientId().id())
+                .clientId(domainModel.getClientId().asUUID())
                 .username(domainModel.getUsername().value())
                 .email(domainModel.getEmailAddress().value())
                 .encryptedPassword(domainModel.getPassword().value())

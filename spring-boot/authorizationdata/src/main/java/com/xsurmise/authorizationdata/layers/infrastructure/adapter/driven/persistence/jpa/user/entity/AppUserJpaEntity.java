@@ -43,7 +43,7 @@ public class AppUserJpaEntity implements Serializable {
     private ClientJpaEntity client;
 
     @Column(name = "client_id")
-    private Integer clientId;
+    private UUID clientId;
 
     @Column(name = "username", unique = true, nullable = false)
     private String username;

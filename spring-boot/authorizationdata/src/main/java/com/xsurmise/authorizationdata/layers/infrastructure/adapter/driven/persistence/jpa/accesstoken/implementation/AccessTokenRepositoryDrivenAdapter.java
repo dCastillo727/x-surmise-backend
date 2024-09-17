@@ -11,6 +11,7 @@ import com.xsurmise.authorizationdata.layers.domain.model.globaluser.GlobalUserI
 import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.accesstoken.entity.AccessTokenJpaEntity;
 import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.accesstoken.jparepository.JpaRepositoryAccessToken;
 import com.xsurmise.authorizationdata.layers.infrastructure.utils.jpa.PageMapper;
+import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,7 +37,7 @@ public class AccessTokenRepositoryDrivenAdapter implements AccessTokenRepository
         if (accessToken == null) throw new NullPointerException("Access token is null");
 
         if (jpaRepositoryAccessToken.existsById(accessToken.getTokenId().asUUID()))
-            throw new IllegalArgumentException("Access token already exists");
+            throw new EntityExistsException("Access token already exists");
 
         AccessTokenJpaEntity entity = accessTokenEntityMapper.toEntity(accessToken);
 

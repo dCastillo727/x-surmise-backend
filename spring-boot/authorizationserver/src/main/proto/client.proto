@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option java_package = "com.xsurmise.authorizationserver";
+option java_multiple_files = true;
+option java_outer_classname = "ClientProto";
+
+service ClientService {
+  rpc GetClients (EmptyRequest) returns (ClientListResponse);
+  rpc GetClientById (ClientIdRequest) returns (ClientResponse);
+  rpc GetClientByUuid (ClientUuidRequest) returns (ClientResponse);
+  rpc CreateClient (ClientCreateRequest) returns (ClientUuidResponse);
+}
+
+message EmptyRequest {}
+
+message ClientUuidRequest {
+  string id = 1;
+}
+
+message ClientIdRequest {
+  string clientId = 1;
+}
+
+message ClientCreateRequest {
+  string clientId = 1;
+  string clientSecret = 2;
+  repeated string grantTypes = 3;
+  repeated string redirectUris = 4;
+  repeated string postLogoutUris = 5;
+  repeated string scopes = 6;
+  int32 accessTokenValidity = 7;
+  int32 refreshTokenValidity = 8;
+}
+
+message ClientUuidResponse {
+  string id = 1;
+}
+
+message ClientResponse {
+  string id = 1;
+  string clientId = 2;
+  string clientSecret = 3;
+  repeated string grantTypes = 4;
+  repeated string redirectUris = 5;
+  repeated string postLogoutUris = 6;
+  repeated string scopes = 7;
+  int32 accessTokenValidity = 8;
+  int32 refreshTokenValidity = 9;
+}
+
+message ClientListResponse {
+  repeated ClientResponse data = 1;
+}

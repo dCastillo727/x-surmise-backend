@@ -7,5 +7,5 @@ public interface Command {
         return Instant.now();
     }
 
-    CommandId getId();
+    CommandId id();
 }

@@ -2,6 +2,7 @@ package com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.pers
 
 import com.xsurmise.authorizationdata.common.utils.annotations.adapter.DrivenAdapter;
 import com.xsurmise.authorizationdata.common.utils.mapping.MapperEntity;
+import com.xsurmise.authorizationdata.common.utils.mapping.ModifierMapper;
 import com.xsurmise.authorizationdata.layers.application.port.driven.persistence.repository.user.AppUserRepositoryDrivenPort;
 import com.xsurmise.authorizationdata.layers.domain.model.appuser.AppUser;
 import com.xsurmise.authorizationdata.layers.domain.model.appuser.AppUserEmailAddress;
@@ -9,6 +10,7 @@ import com.xsurmise.authorizationdata.layers.domain.model.appuser.AppUserId;
 import com.xsurmise.authorizationdata.layers.domain.model.appuser.Username;
 import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.user.entity.AppUserJpaEntity;
 import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.user.jparepository.JpaRepositoryAppUser;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
@@ -24,6 +26,7 @@ public class AppUserRepositoryDrivenAdapter implements AppUserRepositoryDrivenPo
     private final JpaRepositoryAppUser jpaRepositoryAppUser;
 
     private final MapperEntity<AppUser, AppUserJpaEntity> appUserJpaMapper;
+    private final ModifierMapper<AppUser, AppUserJpaEntity> appUserModifier;
 
     @Override
     public void save(AppUser appUser) {
@@ -80,8 +83,12 @@ public class AppUserRepositoryDrivenAdapter implements AppUserRepositoryDrivenPo
     public AppUser update(AppUser appUser) {
         if (appUser == null) throw new NullPointerException("appUser cannot be null");
 
-        AppUserJpaEntity entity = appUserJpaMapper.toEntity(appUser);
-        jpaRepositoryAppUser.save(entity);
+        AppUserJpaEntity foundEntity = jpaRepositoryAppUser.findById(appUser.getId().asUUID())
+                .orElseThrow(() -> new EntityNotFoundException("Could not find app user with id: " + appUser.getId().asUUID()));
+
+        AppUserJpaEntity modifiedEntity = appUserModifier.applyChangesFrom(appUser).to(foundEntity);
+
+        jpaRepositoryAppUser.save(modifiedEntity);
 
         return appUser;
     }

@@ -22,5 +22,5 @@ public interface JpaRepositoryRefreshToken extends JpaRepository<RefreshTokenJpa
 
     @Modifying
     @Query("DELETE RefreshTokenJpaEntity rt WHERE rt.appUser.globalUserId = :gbUserId")
-    void deleteByGlobalUserId(UUID globalUserId);
+    void deleteByGlobalUserId(@Param("gbUserId") UUID globalUserId);
 }

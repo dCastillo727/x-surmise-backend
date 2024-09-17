@@ -23,13 +23,14 @@ public class ClientJpaModifier implements ModifierMapper<Client, ClientJpaEntity
 
     @Override
     public ClientJpaEntity to(final ClientJpaEntity end) {
-        end.setId(domainClient.getId().id());
+        end.setId(domainClient.getId().asUUID());
         end.setClientId(domainClient.getClientId().value());
         end.setClientSecret(domainClient.getClientSecret().value());
         end.setAccessTokenValidity(domainClient.getAccessTokenValidity().duration());
         end.setRefreshTokenValidity(domainClient.getRefreshTokenValidity().duration());
         end.setGrantTypes(domainClient.getGrantTypes().stream().map(GrantType::getValue).toArray(String[]::new));
         end.setRedirectUris(domainClient.getRedirectUris().stream().map(RedirectUri::uri).toArray(String[]::new));
+        end.setPostLogoutUris(domainClient.getPostLogoutUris().stream().map(RedirectUri::uri).toArray(String[]::new));
         end.setScopes(domainClient.getScopes().stream().map(Scope::getValue).toArray(String[]::new));
 
         return end;

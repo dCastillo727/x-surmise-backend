@@ -35,7 +35,7 @@ public class ClientRepositoryDrivenAdapter implements ClientRepositoryDrivenPort
         if (client == null)
             throw new NullPointerException("Client cannot be null");
 
-        if (jpaRepositoryClient.existsById(client.getId().id()))
+        if (jpaRepositoryClient.existsById(client.getId().asUUID()))
             throw new EntityExistsException("Client with id " + client.getId().id() + " already exists");
 
         ClientJpaEntity entity = clientMapper.toEntity(client);
@@ -46,7 +46,7 @@ public class ClientRepositoryDrivenAdapter implements ClientRepositoryDrivenPort
     public Optional<Client> findBySimpleId(ClientSimpleId clientId) {
         if (clientId == null) throw new NullPointerException("clientId cannot be null");
 
-        return jpaRepositoryClient.findById(clientId.id()).map(clientMapper::toDomainModel);
+        return jpaRepositoryClient.findById(clientId.asUUID()).map(clientMapper::toDomainModel);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class ClientRepositoryDrivenAdapter implements ClientRepositoryDrivenPort
         if (client == null) throw new NullPointerException("client cannot be null");
 
         final ClientJpaEntity foundClient = jpaRepositoryClient
-                .findById(client.getId().id())
+                .findById(client.getId().asUUID())
                 .orElseThrow(() -> new EntityNotFoundException("Client with id " + client.getId().id() + " not found"));
 
         final ClientJpaEntity modifiedClient = clientModifier

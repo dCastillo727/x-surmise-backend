@@ -8,11 +8,14 @@ import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persi
 import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.refreshtoken.mapping.RefreshTokenJpaMapper;
 import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.refreshtoken.mapping.RefreshTokenPageMapper;
 import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.user.mapping.AppUserJpaMapper;
+import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.user.mapping.AppUserModifier;
+import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.user.mapping.GlobalUserJpaMapper;
+import com.xsurmise.authorizationdata.layers.infrastructure.adapter.driven.persistence.jpa.user.mapping.GlobalUserModifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class MappersConfig {
+public class JpaMappersConfig {
     @Bean
     public ClientJpaMapper clientJpaMapper() {
         return new ClientJpaMapper();
@@ -51,5 +54,20 @@ public class MappersConfig {
     @Bean
     public AppUserJpaMapper appUserJpaMapper() {
         return new AppUserJpaMapper();
+    }
+
+    @Bean
+    public AppUserModifier appUserModifier() {
+        return new AppUserModifier();
+    }
+
+    @Bean
+    public GlobalUserJpaMapper globalUserJpaMapper() {
+        return new GlobalUserJpaMapper();
+    }
+
+    @Bean
+    public GlobalUserModifier globalUserModifier(GlobalUserJpaMapper globalUserJpaMapper) {
+        return new GlobalUserModifier(globalUserJpaMapper);
     }
 }

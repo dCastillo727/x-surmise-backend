@@ -1,0 +1,5 @@
+grpc:
+  client:
+    client-service:
+      address: "localhost:8002"
+      negotiation-type: plaintext

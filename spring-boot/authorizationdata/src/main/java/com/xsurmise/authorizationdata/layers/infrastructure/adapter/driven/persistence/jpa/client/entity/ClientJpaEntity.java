@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "oauth_clients")
@@ -20,8 +21,8 @@ import java.time.OffsetDateTime;
 public class ClientJpaEntity implements Serializable {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(name = "client_id", unique = true, nullable = false)
     private String clientId;
@@ -36,6 +37,10 @@ public class ClientJpaEntity implements Serializable {
     @Column(name = "redirect_uris", columnDefinition = "varchar[]")
     @Type(value = CustomStringArrayType.class)
     private String[] redirectUris;
+
+    @Column(name = "post_logout_uris", columnDefinition = "varchar[]")
+    @Type(value = CustomStringArrayType.class)
+    private String[] postLogoutUris;
 
     @Column(name = "scopes", nullable = false, columnDefinition = "varchar[]")
     @Type(value = CustomStringArrayType.class)

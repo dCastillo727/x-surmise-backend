@@ -6,11 +6,12 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum GrantType {
-    PASSWORD("password"),
+    DEVICE_CODE("device_code"),
     CLIENT_CREDENTIALS("client_credentials"),
     REFRESH_TOKEN("refresh_token"),
     AUTHORIZATION_CODE("authorization_code"),
-    IMPLICIT("implicit")
+    JWT_BEARER("jwt_bearer"),
+    TOKEN_EXCHANGE("token_exchange")
     ;
 
     private final String value;

@@ -10,7 +10,7 @@ public class ClientJpaMapper implements MapperEntity<Client, ClientJpaEntity> {
     @Override
     public ClientJpaEntity toEntity(Client domainModel) {
         return ClientJpaEntity.builder()
-                .id(domainModel.getId().id())
+                .id(domainModel.getId().asUUID())
                 .clientId(domainModel.getClientId().value())
                 .clientSecret(domainModel.getClientSecret().value())
                 .accessTokenValidity(domainModel.getAccessTokenValidity().duration())
@@ -18,6 +18,7 @@ public class ClientJpaMapper implements MapperEntity<Client, ClientJpaEntity> {
                 .createdAt(domainModel.getCreatedAt().toOffsetDateTime())
                 .updatedAt(domainModel.getUpdatedAt().toOffsetDateTime())
                 .redirectUris(domainModel.getRedirectUris().stream().map(RedirectUri::uri).toArray(String[]::new))
+                .postLogoutUris(domainModel.getPostLogoutUris().stream().map(RedirectUri::uri).toArray(String[]::new))
                 .scopes(domainModel.getScopes().stream().map(Scope::getValue).toArray(String[]::new))
                 .grantTypes(domainModel.getGrantTypes().stream().map(GrantType::getValue).toArray(String[]::new))
                 .build();
@@ -31,6 +32,7 @@ public class ClientJpaMapper implements MapperEntity<Client, ClientJpaEntity> {
                 ClientSecret.from(entity.getClientSecret()),
                 Arrays.stream(entity.getGrantTypes()).map(GrantType::fromValue).toList(),
                 Arrays.stream(entity.getRedirectUris()).map(RedirectUri::new).toList(),
+                Arrays.stream(entity.getPostLogoutUris()).map(RedirectUri::new).toList(),
                 Arrays.stream(entity.getScopes()).map(Scope::fromValue).toList(),
                 TokenValidity.of(entity.getAccessTokenValidity()),
                 TokenValidity.of(entity.getRefreshTokenValidity()),
